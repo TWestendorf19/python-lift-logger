@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lifting-logger"
+dynamic = ["version"]
+description = "A python application for logging weight lifting sessions to 
+track sets, reps, and PRs."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Tyson Westendorf", email = "tywestendorf@gmail.com" },
+]
+keywords = ["example", "python", "package"]
+dependencies = [
+    "textual",
+    "sqlite3",
+]
+[project.urls]
+Homepage = "https://github.com/TWestendorf19/python-lifting-logger"
+Repository = "https://github.com/TWestendorf19/python-lifting-logger"
+Issues = "https://github.com/TWestendorf/python-lifting-logger/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "lifting_logger.__version__"}

@@ -10,6 +10,7 @@ if %errorlevel% neq 0 (
     echo Python is not installed. Please install Python 3.8 or higher and try again.
     exit /b 1
 )
+echo Python installation found.
 
 REM Ensure python version is at least 3.8
 echo Checking Python version...
@@ -33,16 +34,26 @@ if %errorlevel% neq 0 (
     echo pip is not installed. Please install pip and try again.
     exit /b 1
 )
+echo pip installation found.
 
 REM Update pip to the latest version
 echo Updating pip...
 python -m pip install --upgrade pip
+if %errorlevel% neq 0 (
+    echo Failed to update pip. Please check your internet connection and try again.
+    exit /b 1
+)
 
 REM Check for a virtual environment, create one if it doesn't exist
 echo Checking for virtual environment...
 if not exist ".venv\Scripts\activate.bat" (
-    echo No Python venv found. Setting up virtual environment...
+    echo Virtual environment not found.
+    echo Creating virtual environment...
     python -m venv .venv
+    if %errorlevel% neq 0 (
+        echo Failed to create virtual environment.
+        exit /b 1
+    )
 ) else (
     echo Virtual environment found.
 )

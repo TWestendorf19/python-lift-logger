@@ -21,12 +21,12 @@ the required dependencies and the application itself.
 1. Navigate to your desired installation directory and clone the repository:
 
 ```bash
-git clone https://github.com/TWestendorf19/LiftLogger.git
+git clone https://github.com/TWestendorf19/python-lift-logger.git
 ```
-2. Change into the LiftLogger directory:
+2. Change into the cloned directory:
 
 ```bash
-cd LiftLogger
+cd python-lift-logger
 ```
 3. Run the appropriate setup script to install dependencies:
 

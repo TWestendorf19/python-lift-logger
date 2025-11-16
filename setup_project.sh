@@ -31,13 +31,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 echo "pip installation found."
+echo "To ensure pip functionality, make sure your pip installation is up to date."
 
 # Check for virtual environment and create one if it doesn't exist
 echo "Checking for virtual environment..."
 if [ ! -d ".venv" ]; then
     echo "Virtual environment not found."
     echo "Creating virtual environment..."
-    python3 -m venv venv
+    python3 -m venv .venv
     if [ $? -ne 0 ]; then
         echo "Failed to create virtual environment."
         exit 1
@@ -49,13 +50,12 @@ fi
 # Activate the virtual environment
 echo "Activating virtual environment..."
 source .venv/bin/activate
-
-# Upgrade pip to the latest version
-echo "Upgrading pip to the latest version..."
-pip install --upgrade pip
 if [ $? -ne 0 ]; then
-    echo "Failed to upgrade pip."
-    exit 1
+	echo "Failed to activate virtual environment. Ensure .venv is set up properly."
+	echo "Try deleting .venv folder and re-running setup script."
+	exit 1
+else
+	echo "Successfully activated virtual environment."
 fi
 
 # Install package and all dependencies based on pyproject.toml using pip

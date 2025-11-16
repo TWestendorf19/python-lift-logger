@@ -32,14 +32,6 @@ if [ $? -ne 0 ]; then
 fi
 echo "pip installation found."
 
-# Update pip to the latest version
-echo "Updating pip..."
-python3 -m pip install --upgrade pip
-if [ $? -ne 0 ]; then
-    echo "Failed to update pip. Please check your internet connection and try again."
-    exit 1
-fi
-
 # Check for virtual environment and create one if it doesn't exist
 echo "Checking for virtual environment..."
 if [ ! -d ".venv" ]; then
@@ -57,6 +49,14 @@ fi
 # Activate the virtual environment
 echo "Activating virtual environment..."
 source .venv/bin/activate
+
+# Upgrade pip to the latest version
+echo "Upgrading pip to the latest version..."
+pip install --upgrade pip
+if [ $? -ne 0 ]; then
+    echo "Failed to upgrade pip."
+    exit 1
+fi
 
 # Install package and all dependencies based on pyproject.toml using pip
 echo "Installing package and dependencies..."

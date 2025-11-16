@@ -36,14 +36,6 @@ if %errorlevel% neq 0 (
 )
 echo pip installation found.
 
-REM Update pip to the latest version
-echo Updating pip...
-python -m pip install --upgrade pip
-if %errorlevel% neq 0 (
-    echo Failed to update pip. Please check your internet connection and try again.
-    exit /b 1
-)
-
 REM Check for a virtual environment, create one if it doesn't exist
 echo Checking for virtual environment...
 if not exist ".venv\Scripts\activate.bat" (
@@ -61,6 +53,14 @@ if not exist ".venv\Scripts\activate.bat" (
 REM Activate the virtual environment
 echo Activating virtual environment...
 call .venv\Scripts\activate
+
+REM Update pip to the latest version
+echo Updating pip to the latest version...
+python -m pip install --upgrade pip
+if %errorlevel% neq 0 (
+    echo Failed to update pip. Please check your internet connection and try again.
+    exit /b 1
+)
 
 REM Install package and all dependencies based on pyproject.toml using pip
 echo Installing required packages...
